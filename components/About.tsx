@@ -29,70 +29,101 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
     }
   ];
 
+  const coreCompetencies = [
+    "Numerical Analysis of PDEs",
+    "Domain Decomposition Methods",
+    "Adaptive Grid Techniques",
+    "Parallel Scientific Computing",
+    "Stochastic Optimization",
+    "Large-scale Linear Algebra"
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {isStandalone && (
         <div className="text-center mb-16">
-          <h2 className="text-indigo-600 font-semibold tracking-wide uppercase text-sm mb-2">The Consultant</h2>
+          <h2 className="text-indigo-600 font-semibold tracking-wide uppercase text-sm mb-2">The Principal Consultant</h2>
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900">Dr. Ronald Haynes</h1>
         </div>
       )}
 
-      {/* Philosophy Quote Section */}
-      <div className="mb-16 text-center max-w-4xl mx-auto">
-        <i className="fas fa-quote-left text-indigo-100 text-6xl mb-6"></i>
-        <p className="text-2xl md:text-4xl font-light italic text-slate-800 leading-tight mb-8">
-          "My mission is to bridge the gap between abstract mathematical rigor and the pragmatic demands of modern industry, turning computational bottlenecks into strategic advantages."
-        </p>
-        <div className="flex flex-col items-center justify-center gap-2">
-          <span className="text-slate-900 font-bold uppercase tracking-widest text-sm">Dr. Ronald Haynes</span>
-          <div className="h-px w-12 bg-indigo-600"></div>
-        </div>
-      </div>
-
-      {/* Main Portrait - Using the specific filename 'me.png' */}
-      <div className="max-w-3xl mx-auto mb-20">
-        <div className="relative">
-          <div className="absolute -inset-4 bg-indigo-100/50 rounded-[3rem] -z-10 blur-2xl"></div>
-          <div className="bg-white p-3 rounded-[3rem] shadow-2xl border border-slate-200 overflow-hidden">
-            <img
-              src="me.png"
-              alt="Dr. Ronald Haynes"
-              className="w-full h-auto rounded-[2.5rem] shadow-inner"
-              style={{ display: 'block' }}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                console.warn("Image 'me.png' not found, using professional placeholder.");
-                target.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop";
-              }}
-            />
+      {/* Executive Bio Section */}
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center mb-24">
+        {/* Portrait Column */}
+        <div className="w-full lg:w-5/12 shrink-0">
+          <div className="relative group">
+            <div className="absolute -inset-4 bg-indigo-500/10 rounded-[3rem] -z-10 blur-2xl group-hover:bg-indigo-500/20 transition-all duration-500"></div>
+            <div className="bg-white p-3 rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden transform group-hover:scale-[1.01] transition-transform duration-500">
+              <img
+                src="input_file_0.png"
+                alt="Dr. Ronald Haynes"
+                className="w-full h-auto rounded-[2.5rem] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                style={{ display: 'block' }}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  console.warn("Primary image not found, using professional placeholder.");
+                  target.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop";
+                }}
+              />
+            </div>
+            {/* Professional Badge */}
+            <div className="absolute -bottom-4 -right-4 bg-slate-900 text-white p-6 rounded-2xl shadow-2xl border border-slate-800 hidden md:block animate-in slide-in-from-bottom-4 duration-700 delay-300">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center text-xl">
+                  <i className="fas fa-graduation-cap"></i>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-slate-400 font-bold">Principal</p>
+                  <p className="font-bold text-lg">Dr. Ronald Haynes, PhD</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-8 py-3 rounded-2xl shadow-xl font-bold whitespace-nowrap">
-            Dr. Ronald Haynes, PhD
-          </div>
         </div>
-      </div>
 
-      {/* Biography and Technical Depth */}
-      <div className="max-w-4xl mx-auto mb-24 mt-12">
-        <div className="space-y-8">
-          <h3 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight text-center">Expertise in Scientific Computing & Modeling</h3>
-          <div className="prose prose-xl text-slate-600 max-w-none space-y-6 text-center">
+        {/* Narrative Column */}
+        <div className="w-full lg:w-7/12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-6">
+            <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+            Academic Rigor & Industrial Precision
+          </div>
+          <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight">
+            Bridging Abstract Theory with <span className="text-indigo-600">Pragmatic Impact</span>.
+          </h3>
+          <div className="prose prose-lg text-slate-600 space-y-6">
             <p className="leading-relaxed">
-              Specializing in the development and analysis of robust numerical methods for complex partial differential equations and multi-variable optimization.
+              With a deep-rooted foundation in computational mathematics and decades of experience in numerical analysis, Dr. Ronald Haynes specializes in transforming high-complexity theoretical problems into efficient, scalable software solutions.
             </p>
             <p className="leading-relaxed">
-              Providing high-performance solution strategies for large-scale industrial systems, from adaptive grid methods to parallel scalability and domain decomposition.
+              His consultancy focuses on <strong>Scientific Computing</strong> and <strong>Mathematical Modeling</strong>, helping organizations navigate the intricate landscape of partial differential equations and multi-objective optimization.
             </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-2 gap-4">
+            {coreCompetencies.map((comp, idx) => (
+              <div key={idx} className="flex items-center gap-3 text-slate-700 font-medium">
+                <i className="fas fa-check-circle text-indigo-500 text-sm"></i>
+                <span className="text-sm md:text-base">{comp}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 flex gap-4">
+            <a href="#contact" className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">
+              Consultation Request
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener" className="px-6 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold hover:bg-slate-50 transition-all">
+              Research Portfolio
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Services Grid */}
-      <div className="mb-24 pt-20 border-t border-slate-200">
+      {/* Engagement Options */}
+      <div className="pt-20 border-t border-slate-200 mb-24">
         <div className="text-center mb-16">
           <h2 className="text-indigo-600 font-semibold tracking-wide uppercase text-sm mb-2">Consultancy Models</h2>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Engagement Options</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">How We Collaborate</h2>
           <div className="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full"></div>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -105,6 +136,22 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
               <p className="text-slate-600 text-sm leading-relaxed flex-grow">{s.desc}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Philosophy Callout */}
+      <div className="mb-24 py-16 px-8 bg-indigo-900 rounded-[3rem] text-center text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl -mr-32 -mt-32"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-400 rounded-full blur-3xl -ml-32 -mb-32"></div>
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <i className="fas fa-quote-left text-indigo-300 text-5xl mb-8 opacity-50"></i>
+          <p className="text-2xl md:text-3xl font-light italic leading-relaxed mb-8">
+            "Every complex industrial problem has an underlying mathematical structure waiting to be optimized. My role is to uncover it."
+          </p>
+          <div className="h-1 w-12 bg-indigo-400 mx-auto mb-4"></div>
+          <p className="uppercase tracking-[0.3em] font-bold text-sm">Innovation through Calculation</p>
         </div>
       </div>
     </div>
