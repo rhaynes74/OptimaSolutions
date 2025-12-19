@@ -55,14 +55,13 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
             <div className="absolute -inset-4 bg-indigo-500/10 rounded-[3rem] -z-10 blur-2xl group-hover:bg-indigo-500/20 transition-all duration-500"></div>
             <div className="bg-white p-3 rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden transform group-hover:scale-[1.01] transition-transform duration-500">
               <img
-                src="input_file_0.png"
+                src="me.jpg"
                 alt="Dr. Ronald Haynes"
-                className="w-full h-auto rounded-[2.5rem] grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                className="w-full h-[500px] object-cover rounded-[2.5rem] grayscale-[10%] hover:grayscale-0 transition-all duration-500 shadow-inner"
                 style={{ display: 'block' }}
                 onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  console.warn("Primary image not found, using professional placeholder.");
-                  target.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop";
+                   // Fallback in case me.jpg fails to load during local development or if missing
+                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';
                 }}
               />
             </div>

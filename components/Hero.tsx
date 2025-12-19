@@ -5,10 +5,10 @@ const Hero: React.FC = () => {
   return (
     <div className="relative overflow-hidden gradient-bg pt-32 pb-24 md:pt-48 md:pb-44">
       {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
-        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-indigo-600 rounded-full blur-[160px]"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-600 rounded-full blur-[160px]"></div>
-        {/* Added grid overlay for technical feel */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-indigo-600 rounded-full blur-[160px] opacity-20"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-blue-600 rounded-full blur-[160px] opacity-20"></div>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
       </div>
 

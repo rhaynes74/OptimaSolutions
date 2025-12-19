@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import About from './components/About';
+import Research from './components/Research';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import Solutions from './components/Solutions';
@@ -49,8 +50,6 @@ const App: React.FC = () => {
     const attemptScroll = () => {
       const element = document.getElementById(sectionId);
       if (element) {
-        // We use scroll-mt-20 in CSS/Tailwind, but this JS fallback ensures 
-        // that transitions between pages (like Admin -> Home) work smoothly.
         const navbarHeight = 80;
         const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({
@@ -69,7 +68,7 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const landingPageSections = ['home', 'services', 'about', 'contact'];
+  const landingPageSections = ['home', 'services', 'research', 'about', 'contact'];
   const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
 
   useEffect(() => {
@@ -101,17 +100,19 @@ const App: React.FC = () => {
 
     return (
       <div className="animate-in fade-in duration-700">
-        {/* Added scroll-mt-20 to ensure fixed navbar doesn't cover content */}
         <section id="home" className="scroll-mt-20">
           <Hero />
         </section>
         <section id="services" className="py-20 bg-white scroll-mt-20">
           <Services />
         </section>
-        <section id="about" className="py-20 bg-slate-50 scroll-mt-20">
+        <section id="research" className="py-20 bg-slate-50 scroll-mt-20">
+          <Research />
+        </section>
+        <section id="about" className="py-20 bg-white scroll-mt-20">
           <About />
         </section>
-        <section id="contact" className="py-20 bg-white border-t border-slate-100 scroll-mt-20">
+        <section id="contact" className="py-20 bg-slate-50 border-t border-slate-100 scroll-mt-20">
           <ContactForm />
         </section>
       </div>
