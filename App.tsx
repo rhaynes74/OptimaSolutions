@@ -61,14 +61,13 @@ const App: React.FC = () => {
       return false;
     };
 
-    // Retry scroll in case the DOM is rendering after a route switch
     if (!attemptScroll()) {
       setTimeout(attemptScroll, 50);
       setTimeout(attemptScroll, 150);
     }
   }, []);
 
-  const landingPageSections = ['home', 'services', 'research', 'about', 'contact'];
+  const landingPageSections = ['home', 'services', 'expertise', 'research', 'about', 'contact'];
   const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
 
   useEffect(() => {
@@ -92,8 +91,17 @@ const App: React.FC = () => {
         return <AdminLogin onLogin={handleLogin} />;
       }
       return (
-        <div className="pt-24 pb-20 animate-in fade-in duration-500 min-h-[80vh]">
-          <Solutions />
+        <div className="pt-24 pb-20 animate-in fade-in duration-500 min-h-[80vh] flex flex-col items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+            <p className="text-slate-600">Secure administrative tasks would be managed here.</p>
+            <button 
+              onClick={() => { setIsAuthenticated(false); sessionStorage.removeItem('admin_auth'); window.location.hash = '#home'; }}
+              className="mt-6 px-6 py-2 bg-slate-900 text-white rounded-lg font-bold"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       );
     }
@@ -106,13 +114,16 @@ const App: React.FC = () => {
         <section id="services" className="py-20 bg-white scroll-mt-20">
           <Services />
         </section>
-        <section id="research" className="py-20 bg-slate-50 scroll-mt-20">
+        <section id="expertise" className="py-20 bg-slate-50 border-y border-slate-100 scroll-mt-20">
+          <Solutions />
+        </section>
+        <section id="research" className="py-20 bg-white scroll-mt-20">
           <Research />
         </section>
-        <section id="about" className="py-20 bg-white scroll-mt-20">
+        <section id="about" className="py-20 bg-slate-50 scroll-mt-20">
           <About />
         </section>
-        <section id="contact" className="py-20 bg-slate-50 border-t border-slate-100 scroll-mt-20">
+        <section id="contact" className="py-20 bg-white border-t border-slate-100 scroll-mt-20">
           <ContactForm />
         </section>
       </div>

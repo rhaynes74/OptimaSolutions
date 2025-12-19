@@ -79,10 +79,10 @@ const Services: React.FC<ServicesProps> = ({ isStandalone }) => {
       {!isStandalone && (
         <div className="mt-16 text-center">
           <a 
-            href="#/admin" 
+            href="#expertise" 
             className="inline-flex items-center gap-2 text-indigo-600 font-bold hover:text-indigo-800 transition-colors group"
           >
-            Access our technical landscape, algorithms, and software stack 
+            Explore our technical landscape, algorithms, and software stack 
             <i className="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
           </a>
         </div>
