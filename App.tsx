@@ -1,0 +1,132 @@
+
+import React, { useState, useEffect, useCallback } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import About from './components/About';
+import ContactForm from './components/ContactForm';
+import Footer from './components/Footer';
+import Solutions from './components/Solutions';
+import AdminLogin from './components/AdminLogin';
+
+const App: React.FC = () => {
+  const [currentPath, setCurrentPath] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check session storage for existing auth
+    const auth = sessionStorage.getItem('admin_auth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    }
+
+    const handleHashChange = () => {
+      let hash = window.location.hash || '#home';
+      
+      // Normalize hash to path
+      if (hash.startsWith('#/')) {
+        hash = hash.substring(2);
+      } else if (hash.startsWith('#')) {
+        hash = hash.substring(1);
+      }
+      
+      if (!hash || hash === '/') hash = 'home';
+      setCurrentPath(hash.toLowerCase());
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange();
+    
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const scrollToSection = useCallback((sectionId: string) => {
+    if (sectionId === 'home' || sectionId === '') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const attemptScroll = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // We use scroll-mt-20 in CSS/Tailwind, but this JS fallback ensures 
+        // that transitions between pages (like Admin -> Home) work smoothly.
+        const navbarHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - navbarHeight,
+          behavior: 'smooth'
+        });
+        return true;
+      }
+      return false;
+    };
+
+    // Retry scroll in case the DOM is rendering after a route switch
+    if (!attemptScroll()) {
+      setTimeout(attemptScroll, 50);
+      setTimeout(attemptScroll, 150);
+    }
+  }, []);
+
+  const landingPageSections = ['home', 'services', 'about', 'contact'];
+  const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
+
+  useEffect(() => {
+    if (isLandingPage) {
+      scrollToSection(currentPath);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [currentPath, isLandingPage, scrollToSection]);
+
+  const handleLogin = (success: boolean) => {
+    if (success) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('admin_auth', 'true');
+    }
+  };
+
+  const renderContent = () => {
+    if (currentPath === 'admin') {
+      if (!isAuthenticated) {
+        return <AdminLogin onLogin={handleLogin} />;
+      }
+      return (
+        <div className="pt-24 pb-20 animate-in fade-in duration-500 min-h-[80vh]">
+          <Solutions />
+        </div>
+      );
+    }
+
+    return (
+      <div className="animate-in fade-in duration-700">
+        {/* Added scroll-mt-20 to ensure fixed navbar doesn't cover content */}
+        <section id="home" className="scroll-mt-20">
+          <Hero />
+        </section>
+        <section id="services" className="py-20 bg-white scroll-mt-20">
+          <Services />
+        </section>
+        <section id="about" className="py-20 bg-slate-50 scroll-mt-20">
+          <About />
+        </section>
+        <section id="contact" className="py-20 bg-white border-t border-slate-100 scroll-mt-20">
+          <ContactForm />
+        </section>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-50">
+      <Navbar currentPath={currentPath} />
+      <main className="flex-grow">
+        {renderContent()}
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default App;
