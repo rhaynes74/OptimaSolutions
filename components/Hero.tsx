@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto mb-14 font-light leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-          Strategic mathematical modeling and customized algorithmic architecture led by <span className="text-white font-medium">Dr. Ronald Haynes</span>. Advancing the frontier of computational impact.
+          Solutions to Industrial and Academic Optimization Problems - theoretically based approaches and software design
         </p>
         
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">

@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { analyzeProblemWithAI } from '../services/geminiService';
 
 interface ContactFormProps {
   isStandalone?: boolean;
@@ -15,31 +14,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleAiAnalysis = async () => {
-    if (!formData.problemDescription || formData.problemDescription.length < 20) {
-      alert("Please provide a more detailed description for the AI to analyze.");
-      return;
-    }
-    
-    setIsAnalyzing(true);
-    try {
-      const result = await analyzeProblemWithAI(formData.problemDescription);
-      setAiAnalysis(result);
-    } catch (error) {
-      console.error("AI Analysis failed:", error);
-      setAiAnalysis("I'm sorry, I couldn't perform the AI analysis at this moment, but our team will review your description manually.");
-    } finally {
-      setIsAnalyzing(false);
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -68,7 +47,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
           onClick={() => {
             setSubmitted(false);
             setFormData({ name: '', email: '', company: '', problemDescription: '' });
-            setAiAnalysis(null);
           }}
           className="text-indigo-600 font-semibold hover:text-indigo-800 transition-colors underline"
         >
@@ -176,17 +154,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
             </div>
 
             <div>
-              <div className="flex justify-between items-center mb-2">
+              <div className="mb-2">
                 <label className="block text-sm font-medium text-slate-700">Describe Your Optimization Problem</label>
-                <button 
-                  type="button"
-                  onClick={handleAiAnalysis}
-                  disabled={isAnalyzing || !formData.problemDescription}
-                  className="text-xs font-bold text-indigo-600 hover:text-indigo-800 disabled:text-slate-400 flex items-center gap-1 transition-colors"
-                >
-                  {isAnalyzing ? <i className="fas fa-spinner fa-spin"></i> : <i className="fas fa-robot"></i>}
-                  Get Initial AI Perspective
-                </button>
               </div>
               <textarea
                 name="problemDescription"
@@ -194,19 +163,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
                 rows={5}
                 value={formData.problemDescription}
                 onChange={handleChange}
-                placeholder="e.g., We have 50 delivery trucks and need to optimize their daily routes while considering driver fatigue and variable time windows..."
                 className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all resize-none"
               ></textarea>
             </div>
-
-            {aiAnalysis && (
-              <div className="p-4 bg-indigo-50 rounded-xl border border-indigo-100 text-sm text-indigo-900 animate-in fade-in slide-in-from-top-2 duration-300">
-                <div className="flex items-center gap-2 mb-2 font-bold text-indigo-700">
-                  <i className="fas fa-sparkles"></i> AI Assessment
-                </div>
-                {aiAnalysis}
-              </div>
-            )}
 
             <button
               type="submit"

@@ -20,13 +20,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
   const navLinks = [
     { name: 'Home', path: 'home', href: '#home' },
     { name: 'Services', path: 'services', href: '#services' },
-    { name: 'Expertise', path: 'expertise', href: '#expertise' },
-    { name: 'Research', path: 'research', href: '#research' },
     { name: 'About', path: 'about', href: '#about' },
+    { name: 'Research', path: 'research', href: '#research' },
+    { name: 'Solutions', path: 'solutions', href: '#solutions' },
     { name: 'Contact', path: 'contact', href: '#contact' },
   ];
 
-  const landingPageSections = ['home', 'services', 'expertise', 'research', 'about', 'contact'];
+  const landingPageSections = ['home', 'services', 'about', 'research', 'solutions', 'contact'];
   const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
 
   const handleLinkClick = (path: string) => {

@@ -5,10 +5,11 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import About from './components/About';
 import Research from './components/Research';
+import Solutions from './components/Solutions';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
-import Solutions from './components/Solutions';
 import AdminLogin from './components/AdminLogin';
+import { PrivateContent } from './private';
 
 const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState('');
@@ -67,7 +68,7 @@ const App: React.FC = () => {
     }
   }, []);
 
-  const landingPageSections = ['home', 'services', 'expertise', 'research', 'about', 'contact'];
+  const landingPageSections = ['home', 'services', 'about', 'research', 'solutions', 'contact'];
   const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
 
   useEffect(() => {
@@ -91,17 +92,17 @@ const App: React.FC = () => {
         return <AdminLogin onLogin={handleLogin} />;
       }
       return (
-        <div className="pt-24 pb-20 animate-in fade-in duration-500 min-h-[80vh] flex flex-col items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
-            <p className="text-slate-600">Secure administrative tasks would be managed here.</p>
+        <div className="pt-24 pb-20 animate-in fade-in duration-500 bg-slate-50 min-h-screen">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 flex justify-between items-center">
+            <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
             <button 
               onClick={() => { setIsAuthenticated(false); sessionStorage.removeItem('admin_auth'); window.location.hash = '#home'; }}
-              className="mt-6 px-6 py-2 bg-slate-900 text-white rounded-lg font-bold"
+              className="px-6 py-2 bg-slate-900 text-white rounded-lg font-bold hover:bg-slate-800 transition-colors"
             >
               Logout
             </button>
           </div>
+          <PrivateContent />
         </div>
       );
     }
@@ -114,14 +115,14 @@ const App: React.FC = () => {
         <section id="services" className="py-20 bg-white scroll-mt-20">
           <Services />
         </section>
-        <section id="expertise" className="py-20 bg-slate-50 border-y border-slate-100 scroll-mt-20">
-          <Solutions />
+        <section id="about" className="py-20 bg-slate-50 scroll-mt-20">
+          <About />
         </section>
         <section id="research" className="py-20 bg-white scroll-mt-20">
           <Research />
         </section>
-        <section id="about" className="py-20 bg-slate-50 scroll-mt-20">
-          <About />
+        <section id="solutions" className="py-20 bg-slate-50 scroll-mt-20">
+          <Solutions />
         </section>
         <section id="contact" className="py-20 bg-white border-t border-slate-100 scroll-mt-20">
           <ContactForm />
