@@ -22,6 +22,11 @@ interface ServicesProps {
 }
 
 const Services: React.FC<ServicesProps> = ({ isStandalone }) => {
+  const handleLinkClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    window.location.hash = path;
+  };
+
   const services = [
     {
       icon: 'fa-calculator',
@@ -64,7 +69,6 @@ const Services: React.FC<ServicesProps> = ({ isStandalone }) => {
         )}
       </div>
 
-      {/* Flex container used instead of grid to allow centering of partial rows */}
       <div className="flex flex-wrap justify-center -mx-4">
         {services.map((service, index) => (
           <div key={index} className="px-4 mb-8 w-full md:w-1/2 lg:w-1/3 flex">
@@ -73,20 +77,22 @@ const Services: React.FC<ServicesProps> = ({ isStandalone }) => {
         ))}
       </div>
       
-      {isStandalone && (
-        <div className="mt-24 p-12 bg-indigo-900 rounded-3xl text-white text-center relative overflow-hidden">
-          <div className="relative z-10">
-            <h3 className="text-3xl font-bold mb-6">Need a custom technical implementation?</h3>
-            <p className="text-indigo-100 mb-8 max-w-xl mx-auto">
-              Beyond standard consulting, I provide full-stack implementation services to integrate these models directly into your enterprise software.
-            </p>
-            <a href="#contact" className="inline-block bg-white text-indigo-900 px-8 py-4 rounded-xl font-bold hover:bg-indigo-50 transition-colors">
-              Schedule a Technical Audit
-            </a>
-          </div>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+      <div className="mt-24 p-12 bg-indigo-900 rounded-3xl text-white text-center relative overflow-hidden">
+        <div className="relative z-10">
+          <h3 className="text-3xl font-bold mb-6">Need a custom technical implementation?</h3>
+          <p className="text-indigo-100 mb-8 max-w-xl mx-auto">
+            Beyond standard consulting, I provide full-stack implementation services to integrate these models directly into your enterprise software.
+          </p>
+          <a 
+            href="#resources" 
+            onClick={(e) => handleLinkClick(e, 'resources')}
+            className="inline-block bg-white text-indigo-900 px-8 py-4 rounded-xl font-bold hover:bg-indigo-50 transition-colors"
+          >
+            Schedule a Technical Audit
+          </a>
         </div>
-      )}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+      </div>
     </div>
   );
 };

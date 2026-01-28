@@ -15,40 +15,13 @@ const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    // Check session storage for existing auth
-    const auth = sessionStorage.getItem('admin_auth');
-    if (auth === 'true') {
-      setIsAuthenticated(true);
-    }
-
-    const handleHashChange = () => {
-      let hash = window.location.hash || '#home';
-      
-      // Normalize hash to path
-      if (hash.startsWith('#/')) {
-        hash = hash.substring(2);
-      } else if (hash.startsWith('#')) {
-        hash = hash.substring(1);
-      }
-      
-      if (!hash || hash === '/') hash = 'home';
-      setCurrentPath(hash.toLowerCase());
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange();
-    
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
   const scrollToSection = useCallback((sectionId: string) => {
-    if (sectionId === 'home' || sectionId === '') {
+    if (!sectionId || sectionId === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    const attemptScroll = () => {
+    const performScroll = () => {
       const element = document.getElementById(sectionId);
       if (element) {
         const navbarHeight = 80;
@@ -62,13 +35,44 @@ const App: React.FC = () => {
       return false;
     };
 
-    if (!attemptScroll()) {
-      setTimeout(attemptScroll, 50);
-      setTimeout(attemptScroll, 150);
+    if (!performScroll()) {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        if (performScroll() || attempts > 10) {
+          clearInterval(interval);
+        }
+      }, 50);
     }
   }, []);
 
-  const landingPageSections = ['home', 'services', 'about', 'research', 'solutions', 'contact'];
+  useEffect(() => {
+    const auth = sessionStorage.getItem('admin_auth');
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+    }
+
+    const handleHashChange = () => {
+      let hash = window.location.hash || '#home';
+      
+      if (hash.startsWith('#/')) {
+        hash = hash.substring(2);
+      } else if (hash.startsWith('#')) {
+        hash = hash.substring(1);
+      }
+      
+      if (!hash || hash === '/') hash = 'home';
+      const cleanPath = hash.toLowerCase();
+      setCurrentPath(cleanPath);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange();
+    
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const landingPageSections = ['home', 'services', 'about', 'research'];
   const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
 
   useEffect(() => {
@@ -107,32 +111,45 @@ const App: React.FC = () => {
       );
     }
 
+    if (currentPath === 'resources') {
+      return (
+        <div className="pt-24 animate-in fade-in duration-700 bg-white">
+          <div className="bg-slate-50 py-16 border-b border-slate-200">
+             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Expert Resources</h1>
+               <p className="text-xl text-slate-600 max-w-3xl">Technical landscape, solver documentation, and consultation engagement models.</p>
+             </div>
+          </div>
+          <section id="technical-landscape" className="py-20 bg-white">
+            <Solutions />
+          </section>
+          <section id="next-steps" className="py-24 bg-slate-50 border-t border-slate-200">
+            <ContactForm />
+          </section>
+        </div>
+      );
+    }
+
     return (
       <div className="animate-in fade-in duration-700">
-        <section id="home" className="scroll-mt-20">
+        <section id="home">
           <Hero />
         </section>
-        <section id="services" className="py-20 bg-white scroll-mt-20">
+        <section id="services" className="py-20 bg-white">
           <Services />
         </section>
-        <section id="about" className="py-20 bg-slate-50 scroll-mt-20">
+        <section id="about" className="py-20 bg-slate-50">
           <About />
         </section>
-        <section id="research" className="py-20 bg-white scroll-mt-20">
+        <section id="research" className="py-20 bg-white">
           <Research />
-        </section>
-        <section id="solutions" className="py-20 bg-slate-50 scroll-mt-20">
-          <Solutions />
-        </section>
-        <section id="contact" className="py-20 bg-white border-t border-slate-100 scroll-mt-20">
-          <ContactForm />
         </section>
       </div>
     );
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
+    <div className="min-h-screen flex flex-col bg-slate-50 selection:bg-indigo-100 selection:text-indigo-900">
       <Navbar currentPath={currentPath} />
       <main className="flex-grow">
         {renderContent()}

@@ -18,40 +18,31 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: 'home', href: '#home' },
-    { name: 'Services', path: 'services', href: '#services' },
-    { name: 'About', path: 'about', href: '#about' },
-    { name: 'Research', path: 'research', href: '#research' },
-    { name: 'Solutions', path: 'solutions', href: '#solutions' },
-    { name: 'Contact', path: 'contact', href: '#contact' },
+    { name: 'Home', path: 'home' },
+    { name: 'Services', path: 'services' },
+    { name: 'About', path: 'about' },
+    { name: 'Research', path: 'research' },
+    { name: 'Resources', path: 'resources' },
   ];
 
-  const landingPageSections = ['home', 'services', 'about', 'research', 'solutions', 'contact'];
+  const landingPageSections = ['home', 'services', 'about', 'research'];
   const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
 
-  const handleLinkClick = (path: string) => {
-    if (path === currentPath && isLandingPage) {
-      const element = document.getElementById(path);
-      if (element) {
-        const navbarHeight = 80;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: elementPosition - navbarHeight, behavior: 'smooth' });
-      } else if (path === 'home') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
+  const handleLinkClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    window.location.hash = path;
     setIsMenuOpen(false);
   };
 
   const getLinkClasses = (path: string) => {
-    const isActive = currentPath === path || (path === 'home' && currentPath === '');
-    const baseClasses = "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer";
+    const isActive = currentPath === path || (path === 'home' && (currentPath === '' || currentPath === 'home'));
+    const baseClasses = "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 cursor-pointer relative group";
     const useDarkText = isScrolled || !isLandingPage;
 
     if (useDarkText) {
       return `${baseClasses} ${isActive ? 'text-indigo-600 font-bold' : 'text-slate-600 hover:text-indigo-600'}`;
     } else {
-      return `${baseClasses} ${isActive ? 'text-white font-bold border-b-2 border-indigo-400 rounded-none' : 'text-slate-200 hover:text-white'}`;
+      return `${baseClasses} ${isActive ? 'text-white font-bold' : 'text-slate-200 hover:text-white'}`;
     }
   };
 
@@ -62,10 +53,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
           <div className="flex items-center">
             <a 
               href="#home" 
-              onClick={() => handleLinkClick('home')}
+              onClick={(e) => handleLinkClick(e, 'home')}
               className={`text-2xl font-bold tracking-tight transition-colors duration-300 ${(isScrolled || !isLandingPage) ? 'text-indigo-600' : 'text-white'}`}
             >
-              Optima<span className={(isScrolled || !isLandingPage) ? 'text-slate-900' : 'text-indigo-300'}>Solutions</span>
+              RDH<span className={(isScrolled || !isLandingPage) ? 'text-slate-900' : 'text-indigo-300'}>OptimalSolutions</span>
             </a>
           </div>
           
@@ -74,11 +65,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
               {navLinks.map((link) => (
                 <a
                   key={link.name}
-                  href={link.href}
-                  onClick={() => handleLinkClick(link.path)}
+                  href={`#${link.path}`}
+                  onClick={(e) => handleLinkClick(e, link.path)}
                   className={getLinkClasses(link.path)}
                 >
                   {link.name}
+                  {(currentPath === link.path || (link.path === 'home' && (currentPath === 'home' || currentPath === ''))) && (
+                    <span className={`absolute bottom-0 left-3 right-3 h-0.5 rounded-full ${isScrolled || !isLandingPage ? 'bg-indigo-600' : 'bg-white'} animate-in fade-in slide-in-from-bottom-1`}></span>
+                  )}
                 </a>
               ))}
             </div>
@@ -87,7 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`${(isScrolled || !isLandingPage) ? 'text-slate-900' : 'text-white'} p-2 focus:outline-none`}
+              className={`${(isScrolled || !isLandingPage) ? 'text-slate-900' : 'text-white'} p-2 focus:outline-none transition-transform active:scale-95`}
               aria-label="Toggle Menu"
             >
               <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
@@ -96,15 +90,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white shadow-2xl absolute top-full left-0 w-full animate-in slide-in-from-top duration-300 border-t border-slate-100">
-          <div className="px-4 pt-4 pb-6 space-y-2">
+        <div className="md:hidden bg-white shadow-2xl absolute top-full left-0 w-full animate-in slide-in-from-top duration-300 border-t border-slate-100 overflow-hidden">
+          <div className="px-4 pt-4 pb-6 space-y-2 bg-white">
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
-                onClick={() => handleLinkClick(link.path)}
+                href={`#${link.path}`}
+                onClick={(e) => handleLinkClick(e, link.path)}
                 className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${currentPath === link.path ? 'bg-indigo-50 text-indigo-600' : 'text-slate-700 hover:bg-slate-50'}`}
               >
                 {link.name}

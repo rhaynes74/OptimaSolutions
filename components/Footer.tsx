@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="lg:col-span-2">
             <span className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-              Optima<span className="text-indigo-400">Solutions</span>
+              RDH<span className="text-indigo-400">OptimalSolutions</span>
             </span>
             <p className="mt-6 max-w-md text-slate-500 text-lg leading-relaxed">
               Dr. Ronald Haynes provides specialized consultancy in Scientific Computing and Mathematical Modeling, bridging the gap between theoretical research and industrial implementation.
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center text-xs uppercase tracking-widest">
-          <p className="text-slate-600">&copy; {new Date().getFullYear()} Dr. Ronald Haynes | Optima Solutions Consultancy.</p>
+          <p className="text-slate-600">&copy; {new Date().getFullYear()} Dr. Ronald Haynes | RDHOptimalSolutions Consultancy.</p>
           <div className="flex gap-8 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
             <a href="#" className="hover:text-white transition-colors">Terms</a>

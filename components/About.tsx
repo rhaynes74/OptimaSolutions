@@ -6,6 +6,11 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ isStandalone }) => {
+  const handleLinkClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    window.location.hash = path;
+  };
+
   const serviceOfferings = [
     {
       title: "Complete Problem Solution",
@@ -60,12 +65,10 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
                 className="w-full h-[500px] object-cover rounded-[2.5rem] grayscale-[10%] hover:grayscale-0 transition-all duration-500 shadow-inner"
                 style={{ display: 'block' }}
                 onError={(e) => {
-                   // Fallback in case me.jpg fails to load during local development or if missing
                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';
                 }}
               />
             </div>
-            {/* Professional Badge */}
             <div className="absolute -bottom-4 -right-4 bg-slate-900 text-white p-6 rounded-2xl shadow-2xl border border-slate-800 hidden md:block animate-in slide-in-from-bottom-4 duration-700 delay-300">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center text-xl">
@@ -108,7 +111,11 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
           </div>
 
           <div className="mt-12 flex gap-4">
-            <a href="#contact" className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">
+            <a 
+              href="#resources" 
+              onClick={(e) => handleLinkClick(e, 'resources')}
+              className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100"
+            >
               Consultation Request
             </a>
             <a href="https://github.com" target="_blank" rel="noopener" className="px-6 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold hover:bg-slate-50 transition-all">

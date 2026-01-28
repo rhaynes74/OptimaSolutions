@@ -2,6 +2,11 @@
 import React from 'react';
 
 const Hero: React.FC = () => {
+  const handleLinkClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    window.location.hash = path;
+  };
+
   return (
     <div className="relative overflow-hidden gradient-bg pt-32 pb-24 md:pt-48 md:pb-44">
       {/* Decorative background elements */}
@@ -18,7 +23,7 @@ const Hero: React.FC = () => {
         </div>
         
         <h1 className="text-6xl md:text-8xl lg:text-[9.5rem] font-bold text-white mb-8 leading-[0.85] tracking-tighter animate-in fade-in zoom-in-95 duration-700 delay-100">
-          Optima<br />
+          Optimal<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-white to-indigo-300">
             Solutions
           </span>
@@ -31,6 +36,7 @@ const Hero: React.FC = () => {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
           <a
             href="#services"
+            onClick={(e) => handleLinkClick(e, 'services')}
             className="group px-10 py-5 bg-white text-slate-950 rounded-2xl font-bold text-lg hover:bg-indigo-50 transition-all shadow-2xl shadow-white/5 flex items-center gap-3"
           >
             Explore Expertise
@@ -38,6 +44,7 @@ const Hero: React.FC = () => {
           </a>
           <a
             href="#about"
+            onClick={(e) => handleLinkClick(e, 'about')}
             className="px-10 py-5 bg-white/5 text-white border border-white/20 rounded-2xl font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-md"
           >
             Meet the Consultant
@@ -45,7 +52,11 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="mt-24 animate-bounce opacity-20 hover:opacity-100 transition-opacity">
-          <a href="#services" className="text-white text-xl">
+          <a 
+            href="#services" 
+            onClick={(e) => handleLinkClick(e, 'services')}
+            className="text-white text-xl"
+          >
             <i className="fas fa-chevron-down"></i>
           </a>
         </div>
