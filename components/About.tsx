@@ -76,7 +76,7 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
                 </div>
                 <div>
                   <p className="text-xs uppercase tracking-widest text-slate-400 font-bold">Consultant</p>
-                  <p className="font-bold text-lg">Dr. Ronald Haynes (PhD)</p>
+                  <p className="font-bold text-lg">Ronald Haynes (PhD)</p>
                 </div>
               </div>
             </div>
