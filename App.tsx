@@ -72,7 +72,7 @@ const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const landingPageSections = ['home', 'services', 'about', 'research'];
+  const landingPageSections = ['home', 'services', 'about', 'research', 'contact'];
   const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
 
   useEffect(() => {
@@ -143,6 +143,9 @@ const App: React.FC = () => {
         </section>
         <section id="research" className="py-20 bg-white">
           <Research />
+        </section>
+        <section id="contact" className="py-24 bg-slate-50 border-t border-slate-200">
+          <ContactForm />
         </section>
       </div>
     );

@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
               RDH<span className="text-indigo-400">OptimalSolutions</span>
             </span>
             <p className="mt-6 max-w-md text-slate-500 text-lg leading-relaxed">
-              Dr. Ronald Haynes provides specialized consultancy in Scientific Computing and Mathematical Modeling, bridging the gap between theoretical research and industrial implementation.
+              Dr. Ronald Haynes provides specialized consultancy in Scientific Computing, Mathematical Modeling and Optimization,  bridging the gap between theoretical research and industrial implementation.
             </p>
             <div className="flex gap-6 mt-8">
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all"><i className="fab fa-linkedin-in"></i></a>

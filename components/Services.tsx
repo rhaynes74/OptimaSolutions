@@ -81,15 +81,8 @@ const Services: React.FC<ServicesProps> = ({ isStandalone }) => {
         <div className="relative z-10">
           <h3 className="text-3xl font-bold mb-6">Need a custom technical implementation?</h3>
           <p className="text-indigo-100 mb-8 max-w-xl mx-auto">
-            Beyond standard consulting, I provide full-stack implementation services to integrate these models directly into your enterprise software.
+            Beyond standard consulting, I provide full-stack implementation services to integrate models and optimization layers directly into your enterprise software.
           </p>
-          <a 
-            href="#resources" 
-            onClick={(e) => handleLinkClick(e, 'resources')}
-            className="inline-block bg-white text-indigo-900 px-8 py-4 rounded-xl font-bold hover:bg-indigo-50 transition-colors"
-          >
-            Schedule a Technical Audit
-          </a>
         </div>
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
       </div>

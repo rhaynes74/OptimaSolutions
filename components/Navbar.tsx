@@ -23,9 +23,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
     { name: 'About', path: 'about' },
     { name: 'Research', path: 'research' },
     { name: 'Resources', path: 'resources' },
+    { name: 'Contact', path: 'contact' },
   ];
 
-  const landingPageSections = ['home', 'services', 'about', 'research'];
+  const landingPageSections = ['home', 'services', 'about', 'research', 'contact'];
   const isLandingPage = landingPageSections.includes(currentPath) || currentPath === '';
 
   const handleLinkClick = (e: React.MouseEvent, path: string) => {
