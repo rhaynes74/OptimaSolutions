@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath }) => {
     { name: 'Services', path: 'services' },
     { name: 'About', path: 'about' },
     { name: 'Research', path: 'research' },
-    { name: 'Resources', path: 'resources' },
+    /* { name: 'Resources', path: 'resources' },*/
     { name: 'Contact', path: 'contact' },
   ];
 
