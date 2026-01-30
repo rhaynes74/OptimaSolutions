@@ -134,7 +134,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
             <ul className="space-y-4">
               <li className="flex gap-3 text-sm text-slate-600">
                 <span className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs shrink-0">1</span>
-                <span>Direct review by Dr. Haynes within 2 business days.</span>
+                <span>Direct review within 2 business days.</span>
               </li>
               <li className="flex gap-3 text-sm text-slate-600">
                 <span className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs shrink-0">2</span>
