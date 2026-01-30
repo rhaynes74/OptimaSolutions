@@ -24,7 +24,7 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
     },
     {
       title: "Open-Source Software",
-      desc: "A complete software solution for your specific problem built entirely on flexible, open-source tools.",
+      desc: "A complete software solution for your specific problem built entirely on flexible, open-source tools is available.",
       icon: "fa-code"
     },
     {
