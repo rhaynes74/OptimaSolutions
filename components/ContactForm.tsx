@@ -112,7 +112,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
               </div>
               <div>
                 <p className="text-sm text-slate-500">Email Me</p>
-                <p className="font-bold text-slate-900">rdhoptimalsolutions@gmail.com</p>
+                <p className="font-bold text-slate-900">rdhaynesoptimalsolutions@gmail.com</p>
               </div>
             </div>
             <div className="flex items-center gap-4">

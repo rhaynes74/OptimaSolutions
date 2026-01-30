@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <i className="fas fa-envelope text-indigo-500 mt-1"></i>
-                <span>rdhoptimalsolutions@gmail.com</span>
+                <span>rdhaynesoptimalsolutions@gmail.com</span>
               </li>
               <li className="flex items-start gap-3">
                 <i className="fas fa-map-marker-alt text-indigo-500 mt-1"></i>
