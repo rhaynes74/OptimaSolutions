@@ -14,7 +14,7 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
   const serviceOfferings = [
     {
       title: "Complete Problem Solution",
-      desc: "A full investigation including summary, results, and conclusions provided in a customized, professional report.",
+      desc: "A full investigation including summary, results, and conclusions provided in a customized report.",
       icon: "fa-file-invoice"
     },
     {
