@@ -1,4 +1,4 @@
-
+/* netlify auto detect form? */
 import React, { useState } from 'react';
 
 interface ContactFormProps {
