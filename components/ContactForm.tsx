@@ -162,10 +162,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
             data-netlify="true"
             data-netlify-honeypot="bot-field"
           >
-                <div id="root"></div>
            
-            {/* Hidden field for Netlify */}
-            <input type="hidden" name="form-name" value="contact" />
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
