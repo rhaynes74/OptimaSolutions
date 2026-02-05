@@ -64,7 +64,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
             <h2 className="text-4xl font-bold text-slate-900 mb-4">Message Sent Successfully</h2>
             <p className="text-xl text-slate-600 max-w-lg mx-auto leading-relaxed">
               Thank you, <span className="font-bold text-indigo-600">{formData.name}</span>. 
-              Your inquiry has been received. Dr. Haynes will review your request and contact you within 24-48 business hours.
+              Your inquiry has been received. I will review your request and contact you within 24-48 business hours.
             </p>
             <div className="mt-12">
               <button 
@@ -151,6 +151,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
         
         <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
+
+          
           
           <form 
             onSubmit={handleSubmit} 
@@ -160,6 +162,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
             data-netlify="true"
             data-netlify-honeypot="bot-field"
           >
+                <div id="root"></div>
            
             {/* Hidden field for Netlify */}
             <input type="hidden" name="form-name" value="contact" />
