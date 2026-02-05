@@ -148,7 +148,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
           </div>
         </div>
 
-        {/* try commenting out form
+        
         <div className="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
           
@@ -158,7 +158,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
             name="contact"
             method="POST"
             data-netlify="true"
+            data-netlify-honeypot="bot-field"
           >
+           
             {/* Hidden field for Netlify */}
             <input type="hidden" name="form-name" value="contact" />
             
@@ -238,7 +240,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isStandalone }) => {
             </button>
             <p className="text-center text-xs text-slate-400">Your information is handled with strict academic and professional confidentiality.</p>
           </form>
-        </div> */}
+        </div> 
       </div>
     </div>
   );
