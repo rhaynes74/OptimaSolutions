@@ -35,12 +35,13 @@ const About: React.FC<AboutProps> = ({ isStandalone }) => {
   ];
 
   const coreCompetencies = [
-    "Numerical Analysis of PDEs",
+    "Numerical Optimization",
+    "Scheduling Problems",
+    "Operations Optimization",
     "Domain Decomposition Methods",
     "Adaptive Grid Techniques",
     "Parallel Scientific Computing",
     "Stochastic Optimization",
-    "Large-scale Linear Algebra"
   ];
 
   return (
